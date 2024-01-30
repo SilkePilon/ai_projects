@@ -91,7 +91,7 @@ export const Navbar = () => {
         >
           API conected
         </Chip>
-        <Dropdown>
+        <Dropdown backdrop="blur">
           <DropdownTrigger>
             <Button variant="bordered">Menu</Button>
           </DropdownTrigger>
@@ -193,7 +193,7 @@ export const Navbar = () => {
         >
           Sponsor
         </Button>
-        <Dropdown>
+        <Dropdown backdrop="blur">
           <DropdownTrigger>
             <Button variant="bordered">Open Menu</Button>
           </DropdownTrigger>
