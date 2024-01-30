@@ -42,7 +42,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isSelected, setIsSelected] = React.useState(true);
-  const [viewer, setViewer] = React.useState(new SkinViewer);
+  const [viewer, setViewer] = React.useState(null);
   useEffect(() => {
     const fetchData = async () => {
       try {
