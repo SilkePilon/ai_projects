@@ -51,7 +51,7 @@ export default function Home() {
         setData(json);
         setLoading(false);
       } catch (error) {
-        setError(error);
+        setError(error as null);
       }
     };
 
