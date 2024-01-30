@@ -85,7 +85,7 @@ export const Navbar = () => {
         justify="end"
       >
         <Chip
-          startContent={<CheckIcon size={18} />}
+          startContent={<CheckIcon size={18} height={undefined} width={undefined} />}
           variant="faded"
           color="success"
         >
