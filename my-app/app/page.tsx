@@ -26,22 +26,24 @@ export default function Home() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <>
+    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}}>
       <Popover showArrow placement="bottom">
-        <PopoverTrigger>
-          <User
-            as="button"
-            name="Zoe Lang"
-            description="Product Designer"
-            className="transition-transform"
-            avatarProps={{
-              src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
-            }}
-          />
-        </PopoverTrigger>
-        <PopoverContent className="p-1">
-          <UserTwitterCard />
-        </PopoverContent>
-      </Popover>
+          <PopoverTrigger>
+            <User
+              as="button"
+              name="Zoe Lang"
+              description="Product Designer"
+              className="transition-transform"
+              avatarProps={{
+                src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
+              }}
+            />
+          </PopoverTrigger>
+          <PopoverContent className="p-1">
+            <UserTwitterCard />
+          </PopoverContent>
+        </Popover>
+    </div>
     </>
   );
 }
