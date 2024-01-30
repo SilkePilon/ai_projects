@@ -42,7 +42,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isSelected, setIsSelected] = React.useState(true);
-  const [viewer, setViewer] = React.useState(null);
+  const [viewer, setViewer] = React.useState(new SkinViewer);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -136,7 +136,7 @@ export default function Home() {
             onReady={({ viewer }) => {
               viewer.animation = new WalkingAnimation();
               viewer.autoRotate = isSelected;
-              setViewer(viewer as SkinViewer);
+              setViewer(viewer);
             }}
           />
         </CardBody>
