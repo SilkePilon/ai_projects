@@ -21,15 +21,22 @@ import {
   PopoverContent,
   User,
 } from "@nextui-org/react";
-import React, { useState, useEffect } from 'react';
-import {CircularProgress} from "@nextui-org/react";
-import {Spacer} from "@nextui-org/react";
-import {Card, CardHeader, CardBody, CardFooter, Divider, Image} from "@nextui-org/react";
-import {Chip} from "@nextui-org/react";
-import {NotificationIcon} from "@/components/icons/NotificationIcon.jsx";
+import React, { useState, useEffect } from "react";
+import { CircularProgress } from "@nextui-org/react";
+import { Spacer } from "@nextui-org/react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Divider,
+  Image,
+} from "@nextui-org/react";
+import { Chip } from "@nextui-org/react";
+import { NotificationIcon } from "@/components/icons/NotificationIcon.jsx";
 import { SkinViewer, WalkingAnimation } from "skinview3d";
-import ReactSkinview3d from "react-skinview3d"
-import {Switch} from "@nextui-org/react";
+import ReactSkinview3d from "react-skinview3d";
+import { Switch } from "@nextui-org/react";
 export default function Home() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -39,7 +46,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://httpbin.org/get');
+        const response = await fetch("https://httpbin.org/get");
         const json = await response.json();
         setData(json);
         setLoading(false);
@@ -62,23 +69,26 @@ export default function Home() {
   if (loading) {
     return (
       <>
-        <div style={{
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center", 
-  alignItems: "center"
-}}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <div>
             <Card radius="lg">
               <CardBody>
-                <CircularProgress/>
+                <CircularProgress />
               </CardBody>
             </Card>
-            
           </div>
           <Spacer y={4} />
           <div>
-            <Chip color="danger" variant="dot">Plugin is not running!</Chip>
+            <Chip color="danger" variant="dot">
+              Plugin is not running!
+            </Chip>
           </div>
           <Spacer y={4} />
           <div>
@@ -90,12 +100,14 @@ export default function Home() {
   }
 
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center", 
-      alignItems: "center"
-    }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <Card className="max-w-[400px]">
         <CardHeader className="flex gap-3">
           <Image
@@ -108,14 +120,13 @@ export default function Home() {
           <div className="flex flex-col">
             <p className="text-md">CustomCapes</p>
             <Image
-            alt="nextui logo"
-            width={150}
-            src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/5/59/Healthbar.png"
-
+              alt="nextui logo"
+              width={150}
+              src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/5/59/Healthbar.png"
             />
           </div>
         </CardHeader>
-        <Divider/>
+        <Divider />
         <CardBody>
           <ReactSkinview3d
             className="viewer"
@@ -129,17 +140,19 @@ export default function Home() {
             }}
           />
         </CardBody>
-        <Divider/>
+        <Divider />
         <CardFooter>
-          <Switch isSelected={isSelected} onValueChange={(value) => {
-        setIsSelected(value);
-        viewer.autoRotate = value;
-      }}>
+          <Switch
+            isSelected={isSelected}
+            onValueChange={(value) => {
+              setIsSelected(value);
+              viewer.autoRotate = value;
+            }}
+          >
             Auto Rotate
-          </Switch>  
+          </Switch>
         </CardFooter>
       </Card>
     </div>
   );
-
 }

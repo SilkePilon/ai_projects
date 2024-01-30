@@ -1,11 +1,9 @@
 "use client";
 
-
 import { title } from "@/components/primitives";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export default function AboutPage() {
-
   return (
     <>
       <title>About</title>

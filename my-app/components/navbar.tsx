@@ -85,7 +85,9 @@ export const Navbar = () => {
         justify="end"
       >
         <Chip
-          startContent={<CheckIcon size={18} height={undefined} width={undefined} />}
+          startContent={
+            <CheckIcon size={18} height={undefined} width={undefined} />
+          }
           variant="faded"
           color="success"
         >
@@ -108,7 +110,12 @@ export const Navbar = () => {
       >
         <Dropdown backdrop="blur">
           <DropdownTrigger>
-            <Button variant="flat" className="text-sm font-normal text-default-600 bg-default-100">Menu</Button>
+            <Button
+              variant="flat"
+              className="text-sm font-normal text-default-600 bg-default-100"
+            >
+              Menu
+            </Button>
           </DropdownTrigger>
           <DropdownMenu
             variant="faded"

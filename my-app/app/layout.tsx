@@ -5,7 +5,7 @@ import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
 import { Navbar } from "@/components/navbar";
 import { Link } from "@nextui-org/link";
-import {Snippet} from "@nextui-org/react";
+import { Snippet } from "@nextui-org/react";
 import clsx from "clsx";
 import type { Viewport } from "next";
 export const metadata: Metadata = {
