@@ -26,7 +26,7 @@ export default function Home() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <>
-    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}}>
+    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '60vh'}}>
       <Popover showArrow placement="bottom">
           <PopoverTrigger>
             <User
