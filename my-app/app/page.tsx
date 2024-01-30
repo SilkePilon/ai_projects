@@ -123,20 +123,20 @@ export default function Home() {
             height={500}
             width={300}
             onReady={({ viewer }) => {
-              var viewers = viewer;
-              // Add an animation
               viewer.animation = new WalkingAnimation();
-              // Enabled auto rotate
               viewer.autoRotate = isSelected;
+              setViewer(viewer);
             }}
           />
         </CardBody>
         <Divider/>
         <CardFooter>
-          <Switch isSelected={isSelected} onValueChange={setIsSelected}>
+          <Switch isSelected={isSelected} onValueChange={(value) => {
+        setIsSelected(value);
+        viewer.autoRotate = value;
+      }}>
             Auto Rotate
           </Switch>  
-          <p className="text-small text-default-500">Auto Rotate: {isSelected ? "true" : "false"}</p>
         </CardFooter>
       </Card>
     </div>
