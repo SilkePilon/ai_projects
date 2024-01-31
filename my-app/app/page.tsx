@@ -136,7 +136,8 @@ export default function Home() {
             onReady={({ viewer }) => {
               viewer.animation = new WalkingAnimation();
               viewer.autoRotate = isSelected;
-              setViewer(viewer);
+              const updatedViewer = viewer;
+              setViewer(updatedViewer);
             }}
           />
         </CardBody>
