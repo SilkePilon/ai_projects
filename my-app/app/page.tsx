@@ -90,7 +90,7 @@ export default function Home() {
           <Spacer y={4} />
           <div>
             <Chip color="danger" variant="dot">
-              Plugin is not running!
+              Pathfinder plugin is not running!
             </Chip>
           </div>
           <Spacer y={4} />
