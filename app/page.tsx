@@ -181,16 +181,16 @@ export default function Home() {
                         </p> */}
                         <Divider />
                         <center>
-                        <Slider
-                                  size="lg"
-                                  step={5}
-                                  label="Range (chunks"
-                                  showSteps={true}
-                                  maxValue={100}
-                                  minValue={10}
-                                  defaultValue={0.6}
-                                  className="max-w-md"
-                                />
+                          <Slider
+                            size="lg"
+                            step={5}
+                            label="Range (chunks"
+                            showSteps={true}
+                            maxValue={100}
+                            minValue={10}
+                            defaultValue={0.6}
+                            className="max-w-md"
+                          />
                         </center>
                         <Divider />
                         <div className="flex gap-2 justify-end">
