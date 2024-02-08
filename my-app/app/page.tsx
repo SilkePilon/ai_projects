@@ -95,7 +95,7 @@ export default function Home() {
           </div>
           <Spacer y={4} />
           <div>
-            <Snippet>npm install @soon/soon</Snippet>
+            <Snippet>npm install @nxg-org/mineflayer-pathfinder</Snippet>
           </div>
         </div>
       </>
