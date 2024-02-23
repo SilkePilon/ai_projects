@@ -24,6 +24,7 @@ import {
   ModalFooter,
   Button,
 } from "@nextui-org/react";
+import { Avatar } from "@nextui-org/react";
 import {
   Popover,
   PopoverTrigger,
@@ -42,6 +43,7 @@ import {
   Image,
 } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
+import {Textarea} from "@nextui-org/react";
 import { Tabs, Tab } from "@nextui-org/react";
 import { Chip } from "@nextui-org/react";
 import { NotificationIcon } from "@/components/icons/NotificationIcon.jsx";
@@ -62,16 +64,29 @@ export default function Home() {
   const delay = (delayInms) => {
     return new Promise((resolve) => setTimeout(resolve, delayInms));
   };
+
+  const [goals, setGoals] = useState([]);
+
+  useEffect(() => {
+    const fetchGoals = async () => {
+      const res = await fetch("http://localhost:5000/bot-events");
+      const data = await res.json();
+      setGoals(data.goalSet);
+    };
+
+    fetchGoals();
+  }, []);
+
   const handleClick = async () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch("https://httpbin.org/get");
+      const response = await fetch("http://localhost:5000/bot-events");
       const data = await response.json();
       await delay(9000);
       // handle response
     } catch (error) {
-      // handle error
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
@@ -80,11 +95,12 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://httpbin.org/get");
+        const response = await fetch("http://localhost:5000/bot-events");
         const json = await response.json();
         setData(json);
         setLoading(false);
       } catch (error) {
+        console.error(error);
         setError(error as null);
       }
     };
@@ -148,7 +164,11 @@ export default function Home() {
           <Tab key="path" title="Path Viewer">
             <Card variant="bordered">
               <CardBody>
-                <iframe src="https://platform.twitter.com/widgets/tweet_button.html"></iframe>
+                <iframe
+                  style={{ borderRadius: "15px" }}
+                  height={600}
+                  src="http://localhost:5001"
+                ></iframe>
               </CardBody>
             </Card>
           </Tab>
@@ -241,9 +261,95 @@ export default function Home() {
             </div>
           </Tab>
           <Tab key="debug" title="Debug">
-            <Card>
-              <CardBody>Soon!</CardBody>
-            </Card>
+            <center>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+                {goals.map((goal) => (
+                  <>
+                    <Card
+                      className="max-w-[340px]"
+                      key={JSON.stringify(goal.refVec)}
+                    >
+                      <CardHeader className="justify-between">
+                        <div className="flex gap-5">
+                          <Avatar
+                            isBordered
+                            radius="sm"
+                            size="md"
+                            src="https://mc-heads.net/avatar/CustomCapes/800/nohelm.png"
+                          />
+                          <div className="flex flex-col gap-1 items-start justify-center">
+                            <h4 className="text-small font-semibold leading-none text-default-600">
+                              CustomCapes
+                            </h4>
+                            <h5 className="text-small tracking-tight text-default-400">
+                              10:55 pm
+                            </h5>
+                          </div>
+                        </div>
+                        <Popover placement="bottom">
+                          <PopoverTrigger>
+                            <Button
+                              className={"font-semibold"}
+                              color="primary"
+                              radius="full"
+                              size="sm"
+                              variant={"ghost"}
+                            >
+                              JSON
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent>
+                            <Textarea
+                              isReadOnly
+                              label="Raw JSON"
+                              variant="bordered"
+                              labelPlacement="outside"
+                              placeholder="."
+                              defaultValue={JSON.stringify(goal, null, 2)}
+                              className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4"
+                            />
+                          </PopoverContent>
+                        </Popover>
+                      </CardHeader>
+                      <CardBody className="px-3 py-0 text-small text-default-400">
+                        <p className="font-semibold">
+                          x: {goal.x}
+                          <br />
+                          y: {goal.y}
+                          <br />
+                          z: {goal.z}
+                          <br />
+                        </p>
+                        <span className="pt-2 font-semibold">
+                          {goal.eventKeys} | {goal.validKeys}
+                        </span>
+                      </CardBody>
+                      <CardFooter className="gap-3">
+                        <div className="flex gap-1">
+                          <p className=" text-default-400 text-small">
+                            dynamic
+                          </p>
+                          <p className="font-semibold text-default-400 text-small">
+                            {goal.dynamic}
+                          </p>
+                        </div>
+                        <div className="flex gap-1">
+                          {data.goalAborted.some(
+                            (aborted) =>
+                              JSON.stringify(aborted.refVec) ===
+                              JSON.stringify(goal.refVec)
+                          ) && (
+                            <span className="font-semibold text-red-400 text-small">
+                              Canceled
+                            </span>
+                          )}
+                        </div>
+                      </CardFooter>
+                    </Card>
+                  </>
+                ))}
+              </div>
+            </center>
           </Tab>
           <Tab key="leaderboard" title="Leaderboard">
             <Card variant="bordered">

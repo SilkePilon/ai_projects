@@ -1,8 +1,8 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Silke Pilon Test Ui",
-  description: "Test Ui",
+  name: "A New Pathfinder",
+  description: "A New Pathfinder",
   navItems: [
     {
       label: "Home",
