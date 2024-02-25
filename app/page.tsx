@@ -12,6 +12,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "@nextui-org/react";
+import { useRef } from 'react';
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
@@ -61,6 +62,8 @@ export default function Home() {
   const [viewer, setViewer] = React.useState(null);
   const [selected, setSelected] = React.useState("login");
   const [isLoading, setIsLoading] = useState(false);
+  const [key, setKey] = useState(0);
+  const [firstPerson, setFirstPerson] = useState(false);
   const delay = (delayInms) => {
     return new Promise((resolve) => setTimeout(resolve, delayInms));
   };
@@ -91,6 +94,29 @@ export default function Home() {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetch('http://localhost:5000/switch')
+      .then(res => res.json())  
+      .then(data => {
+        setFirstPerson(data.firstPerson); 
+      });
+  }, []);
+
+
+  const handleChange = () => {
+    fetch('http://localhost:5000/switch')
+      .then(res => res.json())
+      .then(data => {
+        setFirstPerson(data.firstPerson);
+      });
+      setTimeout(() => {
+        // Update key after delay
+        setKey(prev => prev + 1);
+      }, 10000); // 1 second delay
+    
+  }
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -165,10 +191,17 @@ export default function Home() {
             <Card variant="bordered">
               <CardBody>
                 <iframe
+                  key={key}
                   style={{ borderRadius: "15px" }}
                   height={600}
                   src="http://localhost:5001"
                 ></iframe>
+                <Switch 
+                  defaultSelected={firstPerson}
+                  onValueChange={handleChange}
+                >
+                  First Person View
+                </Switch>
               </CardBody>
             </Card>
           </Tab>
